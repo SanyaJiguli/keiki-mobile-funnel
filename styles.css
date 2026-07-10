@@ -3756,6 +3756,7 @@ button {
 
 .primary-button {
   font-weight: 780;
+  transition: background-color 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
 }
 
 .option-list:has(.primary-button) {
@@ -4081,4 +4082,35 @@ button {
 :root.mini-viewport .age-actions {
   margin-top: auto;
   padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+/* Quiet handoff between screens: the shell stays still while content changes. */
+.phone-screen.screen-leaving {
+  pointer-events: none;
+}
+
+.phone-screen.screen-leaving > :not(.funnel-header) {
+  opacity: 0;
+  transition: opacity 100ms ease-out;
+}
+
+.phone-screen.screen-entering > :not(.funnel-header) {
+  animation: screenContentIn 180ms ease-out both;
+}
+
+@keyframes screenContentIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-screen.screen-leaving > :not(.funnel-header),
+  .phone-screen.screen-entering > :not(.funnel-header) {
+    animation: none;
+    transition: none;
+  }
 }

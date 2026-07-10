@@ -999,7 +999,7 @@ function renderPaywall() {
   `;
 }
 
-function selectOption(value, multi) {
+function selectOption(value, multi, sourceButton) {
   const screen = currentScreen().id;
 
   if (screen === "age") {
@@ -1021,7 +1021,9 @@ function selectOption(value, multi) {
         ? state.interests.filter((item) => item !== value)
         : [...state.interests, value];
     }
-    render();
+    sourceButton?.classList.toggle("selected", state.interests.includes(value));
+    const continueButton = document.querySelector("[data-action='next']");
+    if (continueButton) continueButton.disabled = state.interests.length === 0;
     return;
   }
 
@@ -1151,7 +1153,7 @@ function next() {
   const flow = currentScreens();
   if (state.step < flow.length - 1) {
     state.step += 1;
-    render();
+    renderWithTransition();
   }
 }
 
@@ -1159,15 +1161,31 @@ function goToScreen(screenId) {
   const index = currentScreens().findIndex((screen) => screen.id === screenId);
   if (index >= 0) {
     state.step = index;
-    render();
+    renderWithTransition();
   }
 }
 
 function back() {
   if (state.step > 0) {
     state.step -= 1;
-    render();
+    renderWithTransition();
   }
+}
+
+function renderWithTransition() {
+  const app = document.querySelector("#app");
+  const outgoingScreen = app.querySelector(".phone-screen");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  window.clearTimeout(window.keikiScreenTransitionTimer);
+  if (!outgoingScreen || reduceMotion) {
+    render();
+    return;
+  }
+
+  outgoingScreen.classList.add("screen-leaving");
+  outgoingScreen.setAttribute("aria-hidden", "true");
+  window.keikiScreenTransitionTimer = window.setTimeout(() => render({ entering: true }), 110);
 }
 
 function escapeHtml(value) {
@@ -1182,9 +1200,10 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value).trim());
 }
 
-function render() {
+function render({ entering = false } = {}) {
   const app = document.querySelector("#app");
   app.innerHTML = currentScreen().render();
+  if (entering) app.querySelector(".phone-screen")?.classList.add("screen-entering");
   window.scrollTo(0, 0);
   app.scrollTop = 0;
   window.clearTimeout(window.keikiPlanTimer);
@@ -1202,7 +1221,9 @@ function render() {
     setupScratchCard(app);
   }
   app.querySelectorAll("[data-option]").forEach((button) => {
-    button.addEventListener("click", () => selectOption(button.dataset.option, button.dataset.multi === "true"));
+    button.addEventListener("click", () =>
+      selectOption(button.dataset.option, button.dataset.multi === "true", button),
+    );
   });
   app.querySelectorAll("[data-skill-id]").forEach((button) => {
     button.addEventListener("click", () =>
