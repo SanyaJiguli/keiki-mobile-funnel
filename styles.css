@@ -4456,3 +4456,98 @@ button {
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+/* A restrained success moment for the personalized paywall column. */
+.comparison-goal {
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison-goal > * {
+  position: relative;
+  z-index: 1;
+}
+
+.comparison-goal::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 16px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(186, 243, 167, 0.82);
+  box-shadow:
+    -9px 10px 0 -1px rgba(186, 243, 167, 0.46),
+    3px 14px 0 -1px rgba(255, 255, 255, 0.32);
+  animation: comparisonTwinkle 3.8s ease-in-out infinite;
+}
+
+.comparison-goal::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -28%;
+  bottom: -28%;
+  left: -55%;
+  width: 32%;
+  background: linear-gradient(90deg, transparent, rgba(186, 243, 167, 0.1), transparent);
+  transform: skewX(-18deg);
+  animation: comparisonSheen 5.2s 1.1s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.comparison-goal .comparison-scale i {
+  transform-origin: left center;
+  animation: comparisonBarFill 820ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.comparison-goal .comparison-signal:nth-of-type(2) .comparison-scale i {
+  animation-delay: 120ms;
+}
+
+@keyframes comparisonBarFill {
+  from {
+    transform: scaleX(0.08);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes comparisonTwinkle {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.72);
+  }
+  48% {
+    opacity: 0.9;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes comparisonSheen {
+  0%,
+  68% {
+    transform: translateX(0) skewX(-18deg);
+    opacity: 0;
+  }
+  76% {
+    opacity: 0.7;
+  }
+  94%,
+  100% {
+    transform: translateX(520%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comparison-goal::before,
+  .comparison-goal::after,
+  .comparison-goal .comparison-scale i {
+    animation: none;
+  }
+}
