@@ -4166,13 +4166,14 @@ button {
 
 .profile-avatar-girl .avatar-head::before {
   display: block;
-  left: -11%;
-  right: -11%;
-  top: 18%;
-  bottom: -17%;
-  border: 11px solid #543354;
-  border-top: 0;
-  border-radius: 0 0 46% 46%;
+  left: -7%;
+  right: -7%;
+  top: 20%;
+  bottom: 2%;
+  border: 0;
+  border-left: 9px solid #543354;
+  border-right: 9px solid #543354;
+  border-radius: 0 0 14px 14px;
   background: transparent;
 }
 
