@@ -527,7 +527,7 @@ function renderTime() {
 
 function renderName() {
   return `
-    <main class="phone-screen">
+    <main class="phone-screen name-screen">
       ${header()}
       ${hero("What is your child's name?")}
       <div class="form-area">
