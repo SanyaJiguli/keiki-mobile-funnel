@@ -392,10 +392,9 @@ function renderStart() {
           <span class="start-spark start-spark-right"></span>
           <img class="didi start-didi" src="${ASSETS.didi}" alt="" />
         </div>
-        <h1>Let us build a plan that fits your child</h1>
+        <h1>Let’s build a plan that fits your child</h1>
         <p class="start-main-copy">
-          A few quick choices will help us shape activities that feel right for your child:
-          not too easy, not too hard, and doable for your day.
+          A few quick answers help us choose activities that feel right for your child — and fit your day.
         </p>
       </section>
       <div class="option-list start-actions">
