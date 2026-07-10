@@ -580,7 +580,7 @@ function renderSkillQuestion(question) {
   const hasSectionImage = startsQuestionSection(question);
   const answers = question.answers || [
     ["not_yet", "Not yet", 0],
-    ["maybe", "Maybe", 1],
+    ["maybe", "With some help", 1],
     ["yes", "Yes", 2],
   ];
   return `
