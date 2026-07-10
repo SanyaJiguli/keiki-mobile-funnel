@@ -910,7 +910,7 @@ function renderPaywall() {
           <div class="comparison-plan-fit">
             <span>First step</span>
             <strong>${focusStep}</strong>
-            <small>${ageFit} · ${routineFit}</small>
+            <small>${ageFit}<em>${routineFit}</em></small>
           </div>
         </div>
       </section>

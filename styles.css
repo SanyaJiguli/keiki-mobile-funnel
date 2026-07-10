@@ -4430,10 +4430,25 @@ button {
 }
 
 .comparison-plan-fit small {
-  color: rgba(255, 255, 255, 0.48);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 7px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11.5px;
+  line-height: 1.2;
+  font-weight: 560;
+}
+
+.comparison-plan-fit small em {
+  border-radius: 999px;
+  background: rgba(88, 185, 86, 0.16);
+  color: #baf3a7;
+  padding: 3px 7px;
   font-size: 10.5px;
-  line-height: 1.15;
-  font-weight: 520;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 720;
 }
 
 /* The name input stays close to its question; only the CTA stays in the thumb zone. */
