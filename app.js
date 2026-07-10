@@ -291,7 +291,8 @@ function applyPreviewRoute() {
 
   const previewAge = params.get("age");
   state.ageBand = skillQuestionBank[previewAge] ? previewAge : state.ageBand || "3-4";
-  state.gender ||= "girl";
+  const previewGender = params.get("gender");
+  state.gender = ["girl", "boy"].includes(previewGender) ? previewGender : state.gender || "girl";
   state.childName ||= "Mia";
   if (state.interests.length === 0) state.interests = ["books", "games"];
   state.setup ||= "mixed";

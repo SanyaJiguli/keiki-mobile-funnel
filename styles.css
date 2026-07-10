@@ -4117,3 +4117,172 @@ button {
     transition: none;
   }
 }
+
+/* Minimal profile avatars with distinct girl and boy variants. */
+.profile-avatar {
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: profileAvatarFloatMinimal 4.8s ease-in-out infinite;
+}
+
+.profile-avatar::before {
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  height: 42%;
+  border-radius: 999px 999px 20px 20px;
+  background: rgba(45, 32, 145, 0.12);
+  filter: none;
+}
+
+.avatar-head {
+  top: 22%;
+  width: 59%;
+  border-radius: 50%;
+  background: #ffd7b2;
+  box-shadow: inset 0 -4px 0 rgba(226, 139, 109, 0.08);
+  animation: avatarHeadBobMinimal 4.2s ease-in-out infinite;
+}
+
+.avatar-head::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  display: none;
+}
+
+.avatar-hair {
+  left: -4%;
+  top: -12%;
+  width: 108%;
+  height: 48%;
+  border-radius: 62% 42% 48% 38% / 82% 76% 28% 24%;
+  background: #543354;
+  transform: rotate(-3deg);
+}
+
+.profile-avatar-girl .avatar-head::before {
+  display: block;
+  left: -11%;
+  right: -11%;
+  top: 18%;
+  bottom: -17%;
+  border: 11px solid #543354;
+  border-top: 0;
+  border-radius: 0 0 46% 46%;
+  background: transparent;
+}
+
+.profile-avatar-girl .avatar-hair {
+  height: 47%;
+  border-radius: 64% 42% 54% 32% / 82% 78% 28% 22%;
+  background: #543354;
+}
+
+.profile-avatar-boy .avatar-hair {
+  left: -5%;
+  top: -15%;
+  width: 110%;
+  height: 44%;
+  border-radius: 44% 66% 30% 62% / 82% 76% 24% 30%;
+  background: #543354;
+  transform: rotate(-6deg);
+}
+
+.avatar-bow,
+.profile-avatar-girl .avatar-bow {
+  display: none;
+}
+
+.profile-avatar-girl .avatar-bow {
+  display: block;
+  left: 69%;
+  top: 4%;
+  width: 18px;
+  height: 7px;
+  aspect-ratio: auto;
+  border-radius: 999px;
+  background: #ff7fad;
+  box-shadow: none;
+  transform: rotate(18deg);
+  animation: none;
+}
+
+.avatar-eye {
+  top: 48%;
+  width: 7px;
+  height: 7px;
+  background: #35206f;
+  box-shadow: none;
+}
+
+.avatar-eye-left {
+  left: 31%;
+}
+
+.avatar-eye-right {
+  right: 31%;
+}
+
+.avatar-cheek {
+  top: 61%;
+  width: 9px;
+  height: 5px;
+  background: rgba(247, 126, 143, 0.24);
+}
+
+.avatar-smile {
+  top: 61%;
+  width: 15px;
+  height: 8px;
+  border-width: 2px;
+  border-color: #35206f;
+}
+
+.avatar-neck {
+  top: 61%;
+  width: 16%;
+  height: 12%;
+  background: #efba93;
+}
+
+.avatar-shirt,
+.profile-avatar-boy .avatar-shirt {
+  bottom: 9%;
+  width: 62%;
+  height: 29%;
+  border-radius: 22px 22px 14px 14px;
+  background: #72d1bf;
+  box-shadow: none;
+}
+
+.profile-avatar-girl .avatar-shirt {
+  background: #b596f4;
+}
+
+.avatar-spark {
+  display: none;
+}
+
+@keyframes profileAvatarFloatMinimal {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes avatarHeadBobMinimal {
+  0%,
+  100% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translate(-50%, -2px);
+  }
+}
