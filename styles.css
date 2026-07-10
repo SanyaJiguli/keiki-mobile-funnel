@@ -4052,3 +4052,33 @@ button {
     display: none;
   }
 }
+
+/* Keep question controls in the mobile thumb zone */
+.phone-screen:not(.start-screen):not(.email-screen) > .option-list,
+.age-actions,
+.family-choice-row {
+  margin-top: auto;
+}
+
+.age-actions {
+  padding-bottom: max(26px, env(safe-area-inset-bottom));
+}
+
+.phone-screen:not(.email-screen) > .form-area {
+  margin-top: auto;
+  margin-bottom: 18px;
+}
+
+.email-entry {
+  margin-top: 62px;
+}
+
+:root.compact-viewport .age-actions {
+  margin-top: auto;
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+:root.mini-viewport .age-actions {
+  margin-top: auto;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
