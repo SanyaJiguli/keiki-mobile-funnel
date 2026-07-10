@@ -841,10 +841,11 @@ function renderPaywall() {
     }[state.familyTime] || "short daily practice";
   const ageFit = ageConfig.ageFit || "age-fit tasks";
   const focusStep = ageConfig.focusSteps?.[plan.focusArea] || "the next easy step";
-  const fitSignals = [
-    ["First step", focusStep],
-    ["Age fit", ageFit],
-  ];
+  const comparisonSignals = plan.zones.slice(0, 2).map((zone) => ({
+    ...zone,
+    goalPercent: Math.min(94, Math.max(zone.percent + 28, 74)),
+    goalStatus: zone.area === plan.focusArea ? "Build confidence" : "Keep growing",
+  }));
   const productCards = ageConfig.productCards || [
     ["Reading games", "Picture stories, sounds and first words"],
     ["Fun worksheets", "Printable tasks matched to age"],
@@ -875,33 +876,41 @@ function renderPaywall() {
         <h1>${possessiveName} plan is ready</h1>
         <p class="paywall-hero-sub">Built for ${plan.ageLabel} and ${routineFit}</p>
 
-        <div class="plan-journey-card">
-          <article>
-            <span>Your answers</span>
-            <img src="${ASSETS.didi}" alt="" />
-            <strong>Starting point</strong>
-            <small>from your quiz</small>
-          </article>
-          <div class="journey-bridge" aria-hidden="true">
-            <i></i><i></i><i></i>
-          </div>
-          <article>
-            <span>Your plan</span>
-            <div class="plan-ready-badge">Ready</div>
-            <strong>Daily mini wins</strong>
-            <small>fits your day</small>
-          </article>
-          <div class="journey-signals">
-            ${fitSignals
+        <div class="plan-comparison-card">
+          <article class="comparison-column comparison-now">
+            <span>Starting point</span>
+            <h2>Now</h2>
+            ${comparisonSignals
               .map(
-                ([label, value]) => `
-                  <div>
-                    <span>${label}</span>
-                    <strong>${value}</strong>
+                (signal) => `
+                  <div class="comparison-signal">
+                    <strong>${signal.label}</strong>
+                    <small>${signal.status}</small>
+                    <div class="comparison-scale"><i style="--compare-level:${signal.percent}%"></i></div>
                   </div>
                 `,
               )
               .join("")}
+          </article>
+          <article class="comparison-column comparison-goal">
+            <span>Personalized</span>
+            <h2>With Keiki</h2>
+            ${comparisonSignals
+              .map(
+                (signal) => `
+                  <div class="comparison-signal">
+                    <strong>${signal.label}</strong>
+                    <small>${signal.goalStatus}</small>
+                    <div class="comparison-scale"><i style="--compare-level:${signal.goalPercent}%"></i></div>
+                  </div>
+                `,
+              )
+              .join("")}
+          </article>
+          <div class="comparison-plan-fit">
+            <span>First step</span>
+            <strong>${focusStep}</strong>
+            <small>${ageFit} · ${routineFit}</small>
           </div>
         </div>
       </section>
