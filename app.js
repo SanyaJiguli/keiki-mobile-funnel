@@ -1331,5 +1331,19 @@ function calculateScratchProgress(context, canvas) {
   return cleared / (pixels.length / 16);
 }
 
+function syncViewportMetrics() {
+  const viewport = window.visualViewport;
+  const height = Math.round(viewport?.height || window.innerHeight || document.documentElement.clientHeight);
+  const width = Math.round(viewport?.width || window.innerWidth || document.documentElement.clientWidth);
+  const root = document.documentElement;
+  root.style.setProperty("--app-vh", `${height}px`);
+  root.classList.toggle("compact-viewport", height <= 760 || width <= 390);
+  root.classList.toggle("mini-viewport", height <= 680 || width <= 375);
+}
+
 applyPreviewRoute();
+syncViewportMetrics();
+window.visualViewport?.addEventListener("resize", syncViewportMetrics);
+window.visualViewport?.addEventListener("scroll", syncViewportMetrics);
+window.addEventListener("resize", syncViewportMetrics);
 render();

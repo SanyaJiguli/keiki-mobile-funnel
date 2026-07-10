@@ -18,6 +18,9 @@
   --option: rgba(255, 255, 255, 0.12);
   --option-strong: rgba(255, 255, 255, 0.18);
   --font-round: "Cera Round Pro", "Cera Pro", "Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --app-vh: 100dvh;
+  --cta-bottom: max(14px, env(safe-area-inset-bottom));
+  --screen-bottom-pad: calc(104px + env(safe-area-inset-bottom));
 }
 
 * {
@@ -27,7 +30,7 @@
 html,
 body {
   margin: 0;
-  min-height: 100%;
+  min-height: var(--app-vh);
   background: #343139;
   font-family: var(--font-round);
   color: var(--white);
@@ -44,7 +47,7 @@ button {
 
 #app {
   width: min(100vw, 430px);
-  min-height: 100dvh;
+  min-height: var(--app-vh);
   margin: 0 auto;
   background:
     radial-gradient(circle at 16% 18%, rgba(253, 39, 147, 0.18), transparent 22%),
@@ -54,8 +57,8 @@ button {
 }
 
 .phone-screen {
-  min-height: 100dvh;
-  padding: max(14px, env(safe-area-inset-top)) 18px calc(104px + env(safe-area-inset-bottom));
+  min-height: var(--app-vh);
+  padding: max(14px, env(safe-area-inset-top)) 18px var(--screen-bottom-pad);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -313,7 +316,7 @@ button {
   position: fixed;
   left: max(18px, calc((100vw - 430px) / 2 + 18px));
   right: max(18px, calc((100vw - 430px) / 2 + 18px));
-  bottom: max(14px, env(safe-area-inset-bottom));
+  bottom: var(--cta-bottom);
   z-index: 20;
   margin-top: 0;
   padding-bottom: 0;
@@ -324,7 +327,7 @@ button {
   position: absolute;
   left: -18px;
   right: -18px;
-  bottom: calc(-1 * max(14px, env(safe-area-inset-bottom)));
+  bottom: calc(-1 * var(--cta-bottom));
   height: 118px;
   background: linear-gradient(180deg, rgba(61, 46, 192, 0), var(--purple-700) 42%);
   pointer-events: none;
@@ -893,7 +896,7 @@ button {
 }
 
 .checkout-loader {
-  min-height: calc(100dvh - 86px);
+  min-height: calc(var(--app-vh) - 86px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2965,6 +2968,445 @@ button {
   50% {
     transform: translate(-28%, -64%) rotate(-8deg);
   }
+}
+
+:root.compact-viewport {
+  --cta-bottom: max(12px, env(safe-area-inset-bottom));
+  --screen-bottom-pad: calc(90px + env(safe-area-inset-bottom));
+}
+
+:root.mini-viewport {
+  --screen-bottom-pad: calc(82px + env(safe-area-inset-bottom));
+}
+
+:root.compact-viewport .phone-screen {
+  gap: 12px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+:root.compact-viewport .topbar {
+  min-height: 34px;
+  grid-template-columns: 34px 1fr 34px;
+}
+
+:root.compact-viewport .logo {
+  width: 70px;
+}
+
+:root.compact-viewport .icon-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+}
+
+:root.compact-viewport .icon-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+:root.compact-viewport .progress-row {
+  gap: 12px;
+  padding: 0 8px;
+}
+
+:root.compact-viewport .progress-track {
+  height: 7px;
+}
+
+:root.compact-viewport .progress-count {
+  font-size: 14px;
+}
+
+:root.compact-viewport .hero {
+  grid-template-columns: 116px 1fr;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+:root.compact-viewport .hero.center {
+  margin-top: 10px;
+}
+
+:root.compact-viewport .didi {
+  width: 118px;
+  max-width: 32vw;
+}
+
+:root.compact-viewport .hero.center .didi {
+  width: 138px;
+  max-width: 38vw;
+}
+
+:root.compact-viewport .bubble {
+  border-radius: 22px;
+  padding: 15px 17px;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+:root.compact-viewport .bubble::before {
+  left: -16px;
+  width: 24px;
+  height: 19px;
+}
+
+:root.compact-viewport .support-copy {
+  font-size: 14px;
+  line-height: 1.42;
+}
+
+:root.compact-viewport .option-list {
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+:root.compact-viewport .option-list:has(.primary-button) {
+  left: max(14px, calc((100vw - 430px) / 2 + 14px));
+  right: max(14px, calc((100vw - 430px) / 2 + 14px));
+}
+
+:root.compact-viewport .option-list:has(.primary-button)::before {
+  left: -14px;
+  right: -14px;
+  height: 98px;
+}
+
+:root.compact-viewport .option-button {
+  min-height: 56px;
+  border-radius: 17px;
+  padding: 0 18px;
+  font-size: 18px;
+  line-height: 1.08;
+}
+
+:root.compact-viewport .option-button .emoji {
+  font-size: 24px;
+}
+
+:root.compact-viewport .option-list.grid .option-button {
+  min-height: 72px;
+  font-size: 24px;
+}
+
+:root.compact-viewport .gender-grid .option-button {
+  min-height: 102px;
+}
+
+:root.compact-viewport .gender-grid .emoji {
+  font-size: 36px;
+}
+
+:root.compact-viewport .primary-button {
+  min-height: 54px;
+  border-radius: 17px;
+}
+
+:root.compact-viewport .age-actions {
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+:root.compact-viewport .legal {
+  max-width: 340px;
+  font-size: 13px;
+  line-height: 1.42;
+  font-weight: 400;
+}
+
+:root.compact-viewport .start-screen {
+  gap: 12px;
+}
+
+:root.compact-viewport .start-hero {
+  gap: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+  transform: translateY(-4px);
+}
+
+:root.compact-viewport .start-didi {
+  width: 136px;
+  max-width: 38vw;
+}
+
+:root.compact-viewport .start-hero h1 {
+  font-size: 30px;
+  line-height: 1.03;
+}
+
+:root.compact-viewport .start-main-copy {
+  width: min(100%, 354px);
+  font-size: 15.5px;
+  line-height: 1.42;
+  font-weight: 650;
+}
+
+:root.compact-viewport .start-actions {
+  gap: 8px;
+}
+
+:root.compact-viewport .start-actions .start-compliance {
+  font-size: 12.5px;
+  line-height: 1.22;
+  font-weight: 600;
+}
+
+:root.compact-viewport .age-intro-screen {
+  gap: 10px;
+}
+
+:root.compact-viewport .age-intro-hero {
+  gap: 10px;
+  margin-top: 6px;
+}
+
+:root.compact-viewport .age-intro-didi {
+  width: min(146px, 40vw);
+}
+
+:root.compact-viewport .age-intro-hero h1 {
+  width: min(100%, 390px);
+  font-size: 28px;
+  line-height: 1.04;
+}
+
+:root.compact-viewport .age-intro-copy {
+  width: min(100%, 390px);
+  font-size: 15.5px;
+  line-height: 1.38;
+  font-weight: 650;
+}
+
+:root.compact-viewport .age-intro-note {
+  display: none;
+}
+
+:root.compact-viewport .skill-screen {
+  gap: 10px;
+}
+
+:root.compact-viewport .skill-copy {
+  gap: 8px;
+  margin-top: 6px;
+}
+
+:root.compact-viewport .theme-label {
+  min-height: 26px;
+  padding: 6px 10px;
+  font-size: 11.5px;
+}
+
+:root.compact-viewport .skill-copy h1 {
+  width: min(100%, 380px);
+  margin-inline: auto;
+  font-size: 24px;
+  line-height: 1.08;
+}
+
+:root.compact-viewport .skill-illustration {
+  width: min(168px, 48vw);
+  margin-top: 0;
+}
+
+:root.compact-viewport .skill-card-main::before {
+  inset: 10px 9px auto;
+  font-size: 20px;
+}
+
+:root.compact-viewport .skill-card-main::after {
+  bottom: 11px;
+  height: 6px;
+}
+
+:root.compact-viewport .skill-token-a {
+  width: 31px;
+  height: 25px;
+}
+
+:root.compact-viewport .skill-token-b {
+  width: 24px;
+  height: 24px;
+}
+
+:root.compact-viewport .skill-token-c {
+  width: 15px;
+  height: 15px;
+}
+
+:root.compact-viewport .answer-row {
+  gap: 8px;
+}
+
+:root.compact-viewport .answer-button {
+  min-height: 52px;
+  border-radius: 17px;
+  padding: 0 18px;
+  font-size: 18px;
+}
+
+:root.compact-viewport .checkout-loader-screen {
+  gap: 10px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+:root.compact-viewport .checkout-loader {
+  min-height: auto;
+  gap: 12px;
+  padding-top: 18px;
+}
+
+:root.compact-viewport .review-loader-wrap {
+  width: 164px;
+  margin-bottom: -2px;
+}
+
+:root.compact-viewport .review-loader-wrap strong {
+  font-size: 34px;
+}
+
+:root.compact-viewport .review-loader-ring i {
+  height: 25px;
+  transform-origin: 3px 78px;
+}
+
+:root.compact-viewport .checkout-loader > p {
+  margin-bottom: 14px;
+  font-size: 19px;
+  line-height: 1.24;
+}
+
+:root.compact-viewport .review-card {
+  border-radius: 17px;
+  padding: 16px;
+  gap: 9px;
+}
+
+:root.compact-viewport .review-stars {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+:root.compact-viewport .review-author {
+  font-size: 13px;
+}
+
+:root.compact-viewport .review-card h2 {
+  font-size: 21px;
+  line-height: 1.16;
+}
+
+:root.compact-viewport .review-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  color: rgba(32, 28, 54, 0.78);
+  font-size: 15.5px;
+  line-height: 1.3;
+  font-weight: 550;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+:root.mini-viewport .phone-screen {
+  gap: 9px;
+  padding-top: max(8px, env(safe-area-inset-top));
+}
+
+:root.mini-viewport .topbar {
+  min-height: 30px;
+}
+
+:root.mini-viewport .logo {
+  width: 64px;
+}
+
+:root.mini-viewport .progress-row {
+  gap: 10px;
+}
+
+:root.mini-viewport .hero {
+  grid-template-columns: 100px 1fr;
+}
+
+:root.mini-viewport .didi {
+  width: 104px;
+}
+
+:root.mini-viewport .bubble {
+  padding: 13px 15px;
+  font-size: 20px;
+}
+
+:root.mini-viewport .start-didi,
+:root.mini-viewport .hero.center .didi {
+  width: 122px;
+}
+
+:root.mini-viewport .start-hero h1 {
+  font-size: 28px;
+}
+
+:root.mini-viewport .start-main-copy {
+  font-size: 14.5px;
+  line-height: 1.36;
+}
+
+:root.mini-viewport .age-intro-didi {
+  width: min(128px, 36vw);
+}
+
+:root.mini-viewport .age-intro-hero h1 {
+  font-size: 25px;
+}
+
+:root.mini-viewport .age-intro-copy {
+  font-size: 14.5px;
+  line-height: 1.32;
+}
+
+:root.mini-viewport .skill-copy {
+  margin-top: 2px;
+}
+
+:root.mini-viewport .skill-copy h1 {
+  font-size: 22px;
+}
+
+:root.mini-viewport .skill-illustration {
+  width: min(142px, 42vw);
+}
+
+:root.mini-viewport .answer-button {
+  min-height: 48px;
+  font-size: 17px;
+}
+
+:root.mini-viewport .review-loader-wrap {
+  width: 144px;
+}
+
+:root.mini-viewport .review-loader-ring i {
+  height: 22px;
+  transform-origin: 3px 68px;
+}
+
+:root.mini-viewport .checkout-loader > p {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+:root.mini-viewport .review-card {
+  padding: 14px;
+}
+
+:root.mini-viewport .review-card h2 {
+  font-size: 19px;
+}
+
+:root.mini-viewport .review-card p {
+  font-size: 14.5px;
+  -webkit-line-clamp: 3;
 }
 
 @media (max-width: 374px) {
