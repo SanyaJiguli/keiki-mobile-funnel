@@ -648,8 +648,21 @@ function renderProfile() {
       <section class="learning-profile">
         <h1>${profile.childName}'s learning profile</h1>
         <div class="profile-hero-row">
-          <div class="photo-placeholder">
-            <span>Photo placeholder</span>
+          <div class="profile-avatar profile-avatar-${profile.genderLabel.toLowerCase()}" aria-hidden="true">
+            <span class="avatar-spark avatar-spark-a"></span>
+            <span class="avatar-spark avatar-spark-b"></span>
+            <span class="avatar-spark avatar-spark-c"></span>
+            <span class="avatar-head">
+              <span class="avatar-hair"></span>
+              <span class="avatar-bow"></span>
+              <span class="avatar-eye avatar-eye-left"></span>
+              <span class="avatar-eye avatar-eye-right"></span>
+              <span class="avatar-cheek avatar-cheek-left"></span>
+              <span class="avatar-cheek avatar-cheek-right"></span>
+              <span class="avatar-smile"></span>
+            </span>
+            <span class="avatar-neck"></span>
+            <span class="avatar-shirt"></span>
           </div>
           <div class="profile-facts">
             <div><span>Gender:</span><strong>${profile.genderLabel}</strong></div>
