@@ -4452,7 +4452,7 @@ button {
 }
 
 /* The name input stays close to its question; only the CTA stays in the thumb zone. */
-.name-screen > .form-area {
+.phone-screen.name-screen > .form-area {
   margin-top: 10px;
   margin-bottom: 0;
 }
