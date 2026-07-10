@@ -387,7 +387,11 @@ function renderStart() {
     <main class="phone-screen start-screen">
       ${header({ back: false, progress: false })}
       <section class="start-hero">
-        <img class="didi start-didi" src="${ASSETS.didi}" alt="" />
+        <div class="start-character" aria-hidden="true">
+          <span class="start-spark start-spark-left"></span>
+          <span class="start-spark start-spark-right"></span>
+          <img class="didi start-didi" src="${ASSETS.didi}" alt="" />
+        </div>
         <h1>Let us build a plan that fits your child</h1>
         <p class="start-main-copy">
           A few quick choices will help us shape activities that feel right for your child:

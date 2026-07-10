@@ -3891,3 +3891,164 @@ button {
 :root.mini-viewport .age-actions {
   margin-top: 26px;
 }
+
+/* First-screen character motion and spacing refinement */
+.start-hero {
+  gap: 14px;
+  transform: translateY(-16px);
+}
+
+.start-character {
+  position: relative;
+  width: 172px;
+  max-width: 48vw;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  animation: startCharacterBreathe 3.8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  transform-origin: 50% 88%;
+}
+
+.start-character::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 18%;
+  right: 18%;
+  bottom: 4px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(29, 20, 114, 0.28);
+  filter: blur(8px);
+  animation: startCharacterShadow 3.8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+.start-didi {
+  width: 100%;
+  max-width: none;
+  filter: drop-shadow(0 14px 16px rgba(27, 14, 78, 0.18));
+}
+
+.start-spark {
+  position: absolute;
+  z-index: 2;
+  width: 9px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.08);
+  animation: startSpark 3.8s ease-in-out infinite;
+}
+
+.start-spark-left {
+  left: 4px;
+  top: 31%;
+}
+
+.start-spark-right {
+  right: -1px;
+  top: 10%;
+  width: 7px;
+  animation-delay: -1.9s;
+}
+
+.start-hero h1 {
+  width: min(100%, 392px);
+  font-size: 32px;
+  line-height: 1.06;
+  font-weight: 750;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.start-main-copy {
+  width: min(100%, 370px);
+  font-size: 16.5px;
+  line-height: 1.46;
+  font-weight: 500;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+}
+
+.start-actions {
+  gap: 9px;
+}
+
+.start-actions .start-compliance {
+  font-size: 13px;
+  line-height: 1.28;
+  font-weight: 500;
+}
+
+@keyframes startCharacterBreathe {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.6deg) scale(1);
+  }
+  48% {
+    transform: translateY(-10px) rotate(1.2deg) scale(1.025);
+  }
+  58% {
+    transform: translateY(-9px) rotate(0.6deg) scale(1.022);
+  }
+}
+
+@keyframes startCharacterShadow {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+  48% {
+    opacity: 0.46;
+    transform: scaleX(0.82);
+  }
+}
+
+@keyframes startSpark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.5);
+  }
+  28%,
+  66% {
+    opacity: 0.8;
+  }
+  52% {
+    transform: translateY(-9px) scale(1);
+  }
+}
+
+:root.compact-viewport .start-hero {
+  gap: 11px;
+  transform: translateY(-8px);
+}
+
+:root.compact-viewport .start-character {
+  width: 136px;
+  max-width: 38vw;
+}
+
+:root.compact-viewport .start-hero h1 {
+  font-size: 29px;
+  line-height: 1.05;
+}
+
+:root.compact-viewport .start-main-copy {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .start-character,
+  .start-character::after,
+  .start-spark {
+    animation: none;
+  }
+
+  .start-spark {
+    display: none;
+  }
+}
