@@ -4286,3 +4286,15 @@ button {
     transform: translate(-50%, -2px);
   }
 }
+
+/* Age choices use the full viewport; no fixed-CTA reserve on this screen. */
+.age-screen {
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.age-screen .age-actions,
+:root.compact-viewport .age-screen .age-actions,
+:root.mini-viewport .age-screen .age-actions {
+  margin-top: auto;
+  padding-bottom: 0;
+}
