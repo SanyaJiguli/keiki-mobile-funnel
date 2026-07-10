@@ -4166,21 +4166,39 @@ button {
 
 .profile-avatar-girl .avatar-head::before {
   display: block;
-  left: -7%;
-  right: -7%;
-  top: 20%;
-  bottom: 2%;
+  left: -2%;
+  right: auto;
+  top: 33%;
+  bottom: auto;
+  width: 15%;
+  height: 49%;
   border: 0;
-  border-left: 9px solid #543354;
-  border-right: 9px solid #543354;
-  border-radius: 0 0 14px 14px;
-  background: transparent;
+  border-radius: 68% 34% 72% 48%;
+  background: #efc464;
+  transform: rotate(3deg);
+}
+
+.profile-avatar-girl .avatar-head::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -2%;
+  top: 33%;
+  width: 15%;
+  height: 49%;
+  border-radius: 34% 68% 48% 72%;
+  background: #efc464;
+  transform: rotate(-3deg);
 }
 
 .profile-avatar-girl .avatar-hair {
-  height: 47%;
-  border-radius: 64% 42% 54% 32% / 82% 78% 28% 22%;
-  background: #543354;
+  left: -4%;
+  top: -13%;
+  width: 108%;
+  height: 49%;
+  border-radius: 58% 46% 52% 38% / 82% 78% 32% 24%;
+  background: linear-gradient(145deg, #f7d77f, #e8b74f);
+  transform: rotate(-2deg);
 }
 
 .profile-avatar-boy .avatar-hair {
@@ -4200,10 +4218,10 @@ button {
 
 .profile-avatar-girl .avatar-bow {
   display: block;
-  left: 69%;
-  top: 4%;
-  width: 18px;
-  height: 7px;
+  left: 70%;
+  top: 3%;
+  width: 16px;
+  height: 6px;
   aspect-ratio: auto;
   border-radius: 999px;
   background: #ff7fad;
