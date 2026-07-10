@@ -321,19 +321,21 @@ function progressMeta() {
 function header({ back = true, progress = true } = {}) {
   const meta = progressMeta();
   return `
-    <header class="topbar">
-      ${back && state.step > 0 ? backButton() : "<span></span>"}
-      <img class="logo" src="${ASSETS.logo}" alt="Keiki" />
-      <span></span>
-    </header>
-    ${
-      progress
-        ? `<div class="progress-row">
-            <div class="progress-track"><div class="progress-fill" style="--progress:${meta.percent}"></div></div>
-            <div class="progress-count">${meta.count}</div>
-          </div>`
-        : ""
-    }
+    <div class="funnel-header ${progress ? "has-progress" : ""}">
+      <header class="topbar">
+        ${back && state.step > 0 ? backButton() : "<span></span>"}
+        <img class="logo" src="${ASSETS.logo}" alt="Keiki" />
+        <span></span>
+      </header>
+      ${
+        progress
+          ? `<div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="--progress:${meta.percent}"></div></div>
+              <div class="progress-count">${meta.count}</div>
+            </div>`
+          : ""
+      }
+    </div>
   `;
 }
 
@@ -1225,7 +1227,6 @@ function render() {
       state.email = emailInput.value;
     };
     emailInput.focus();
-    emailInput.setSelectionRange(emailInput.value.length, emailInput.value.length);
     emailInput.addEventListener("input", syncEmail);
     emailInput.addEventListener("change", syncEmail);
     window.setTimeout(syncEmail, 0);
